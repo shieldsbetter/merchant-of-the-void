@@ -1,0 +1,61 @@
+// People: everyone the game has named (crew, contacts, fixers, lenders, a
+// plot's characters), in g.people: [{ id, name }]. No two share a name. Crew
+// members and contacts are people too: their ids are their person ids.
+// Anything else that's about someone stores their id, and looks the name up
+// (nameOf), so text can refer to them by who they are (see refs.js).
+// Fight extras (a mercenary, a thug) aren't people: they only get a name no
+// person has (freeName).
+
+import { personRef } from './refs.js';
+
+const FIRST = [
+  'Ada', 'Bram', 'Cass', 'Dov', 'Esme', 'Fitz', 'Gale', 'Hollis', 'Ines', 'Jory', 'Kit', 'Lark', 'Mira', 'Nox', 'Oren', 'Pell',
+  'Quinn', 'Rook', 'Sela', 'Tamsin', 'Ulla', 'Vesper', 'Wren', 'Xan', 'Yara', 'Zeb', 'Anouk', 'Basil', 'Cato', 'Delphine',
+  'Emeka', 'Farrah', 'Gideon', 'Halvard', 'Ilse', 'Jun', 'Kasimir', 'Leto', 'Marisol', 'Nadia', 'Odile', 'Priya', 'Rafe',
+  'Saoirse', 'Thaddeus', 'Umar', 'Valka', 'Wim', 'Yusuf', 'Zora', 'Amara', 'Bastian', 'Corin', 'Dagny', 'Elio', 'Freya',
+  'Goran', 'Hana', 'Idris', 'Juno', 'Kofi', 'Lio', 'Maeve', 'Nikolai', 'Orla', 'Pim', 'Rosalind', 'Sunniva', 'Teo', 'Una',
+  'Viggo', 'Wanjiru', 'Ximena', 'Yevgenia', 'Zainab', 'Alder', 'Briony', 'Calloway', 'Dmitri', 'Eun', 'Fen', 'Greer', 'Hugo',
+  'Isolde', 'Jessamy', 'Kenji', 'Lucan', 'Mateo', 'Niamh', 'Osei', 'Petra', 'Remy', 'Silas', 'Tova', 'Ugo', 'Vida', 'Ash',
+  'Birdie', 'Cyrus', 'Dax', 'Ebba', 'Flint', 'Ione', 'Jasper', 'Kestrel', 'Lumi', 'Moss', 'Nell', 'Otto', 'Perrin', 'Rhys'
+];
+const LAST = [
+  'Vance', 'Okoro', 'Lindqvist', 'Marsh', 'Tanaka', 'Reyes', 'Holt', 'Achebe', 'Duval', 'Sato', 'Brandt', 'Quill',
+  'Abernathy', 'Bello', 'Castellanos', 'Dagher', 'Eriksen', 'Fairweather', 'Gallo', 'Haddad', 'Ivanova', 'Jansen', 'Kaur',
+  'Lachance', 'Mbeki', 'Nakamura', 'Ortega', 'Pike', 'Quarshie', 'Rourke', 'Salgado', 'Thorne', 'Ueda', 'Varga', 'Whitlock',
+  'Yilmaz', 'Zielinski', 'Ashdown', 'Blackwood', 'Corvo', 'Drummond', 'Esposito', 'Fenwick', 'Grieve', 'Halloran', 'Ibarra',
+  'Jovanovic', 'Kowalczyk', 'Locke', 'Moreau', 'Nwosu', 'Oyelaran', 'Petrakis', 'Rasmussen', 'Sorensen', 'Tolliver',
+  'Underhill', 'Voss', 'Wainwright', 'Xu', 'Yoon', 'Zamora', 'Albescu', 'Barros', 'Chandra', 'Delacroix', 'Engel', 'Flores',
+  'Grady', 'Hargreave', 'Iwu', 'Kerrigan', 'Lund', 'Mendoza', 'Novak', 'Osei-Bonsu', 'Pasquale', 'Ruiz', 'Strand', 'Takeda',
+  'Ulrich', 'Vasquez', 'Wolfe', 'Yates', 'Ambrose', 'Bishop', 'Crane', 'Dunmore', 'Ferro', 'Hale', 'Larkin',
+  'Mercer', 'Nash', 'Orr', 'Penhallow', 'Sable', 'Tarrant', 'Wilder'
+];
+
+const pick = (a, r) => a[Math.floor(r() * a.length)];
+
+// A name no person has, nor any of `taken` (names): `last` keeps the family
+// name, if there's a free one with it.
+export function freeName(people, { last, taken = [], r = Math.random } = {}) {
+  const used = new Set([...people.map((p) => p.name), ...taken]);
+  for (let i = 0; i < 1000; i++) {
+    const n = `${pick(FIRST, r)} ${i < 500 && last ? last : pick(LAST, r)}`;
+    if (!used.has(n)) return n;
+  }
+  throw new Error('out of names');
+}
+
+// Someone new: a person with a name nobody has (see freeName); `name` to
+// give them one (only for games from before people).
+export function newPerson(people, opts = {}) {
+  const p = { id: Math.max(0, ...people.map((p) => p.id)) + 1, name: opts.name ?? freeName(people, opts) };
+  people.push(p);
+  return p;
+}
+
+// Their name: `x` is a person's id (or, in things from before people, already a name).
+export const nameOf = (people, x) => (typeof x === 'string' ? x : people.find((p) => p.id === x)?.name);
+
+// Them, in text (see refs.js): `x` as for nameOf; no one at all is `none`.
+export const refOf = (people, x, none = 'Someone') => (x == null ? none : personRef(personOf(people, x)));
+
+// A person, by id (or, from before people, a name).
+export const personOf = (people, x) => (typeof x === 'string' ? { name: x } : people.find((p) => p.id === x));
