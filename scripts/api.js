@@ -12,29 +12,30 @@ let child = null;
 let again = false;
 
 function start() {
-  child = spawn(process.execPath, ['server/index.js'], { stdio: 'inherit' });
-  child.on('exit', () => {
-    child = null;
-    if (again) {
-      again = false;
-      start();
-    }
-  });
+    child = spawn(process.execPath, ['server/index.js'], { stdio: 'inherit' });
+    child.on('exit', () => {
+        child = null;
+        if (again) {
+            again = false;
+            start();
+        }
+    });
 }
 
 // A burst of changes (a save, several files at once) is one restart.
 let timer = null;
 watch(dir, (event, file) => {
-  if (!file?.endsWith('.js')) return;
-  clearTimeout(timer);
-  timer = setTimeout(() => {
-    console.log(`Restarting (${file} changed)`);
-    if (child) {
-      again = true;
-      child.kill('SIGTERM');
-    } else start();
-  }, 150);
+    if (!file?.endsWith('.js')) return;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+        console.log(`Restarting (${file} changed)`);
+        if (child) {
+            again = true;
+            child.kill('SIGTERM');
+        } else start();
+    }, 150);
 });
 
-for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => (child?.kill(sig), process.exit(0)));
+for (const sig of ['SIGINT', 'SIGTERM'])
+    process.on(sig, () => (child?.kill(sig), process.exit(0)));
 start();

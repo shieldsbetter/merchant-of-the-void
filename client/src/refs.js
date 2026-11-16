@@ -15,36 +15,37 @@ export const setHere = (id) => (here = id == null ? null : String(id));
 
 // The text as nodes, references made, struck-through parts struck.
 export function rich(text) {
-  const frag = document.createDocumentFragment();
-  let at = 0;
-  for (const m of text.matchAll(STRUCK)) {
-    frag.append(refs(text.slice(at, m.index)));
-    const s = document.createElement('s');
-    s.append(refs(m[1]));
-    frag.append(s);
-    at = m.index + m[0].length;
-  }
-  frag.append(refs(text.slice(at)));
-  return frag;
+    const frag = document.createDocumentFragment();
+    let at = 0;
+    for (const m of text.matchAll(STRUCK)) {
+        frag.append(refs(text.slice(at, m.index)));
+        const s = document.createElement('s');
+        s.append(refs(m[1]));
+        frag.append(s);
+        at = m.index + m[0].length;
+    }
+    frag.append(refs(text.slice(at)));
+    return frag;
 }
 
 function refs(text) {
-  const frag = document.createDocumentFragment();
-  let at = 0;
-  for (const m of text.matchAll(REF)) {
-    frag.append(text.slice(at, m.index));
-    const [, kind, id, name] = m;
-    if (kind === 'planet' && id === here) frag.append(name);
-    else if (kind === 'planet') {
-      const a = document.createElement('a');
-      a.href = `#/route/${id}`;
-      a.textContent = name;
-      frag.append(a);
-    } else frag.append(named(name, id === 'captain' ? 'captain' : Number(id)));
-    at = m.index + m[0].length;
-  }
-  frag.append(text.slice(at));
-  return frag;
+    const frag = document.createDocumentFragment();
+    let at = 0;
+    for (const m of text.matchAll(REF)) {
+        frag.append(text.slice(at, m.index));
+        const [, kind, id, name] = m;
+        if (kind === 'planet' && id === here) frag.append(name);
+        else if (kind === 'planet') {
+            const a = document.createElement('a');
+            a.href = `#/route/${id}`;
+            a.textContent = name;
+            frag.append(a);
+        } else
+            frag.append(named(name, id === 'captain' ? 'captain' : Number(id)));
+        at = m.index + m[0].length;
+    }
+    frag.append(text.slice(at));
+    return frag;
 }
 
 // The text with references reduced to their names, for anywhere only plain

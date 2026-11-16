@@ -7,7 +7,13 @@
 // ~~text~~ is struck through (say, a place on a quest you've been to).
 export const planetRef = (node) => `[[planet:${node.id}|${node.name}]]`;
 // (A person from before people, with only a name, is just the name.)
-export const personRef = (p) => (p?.id != null ? `[[person:${p.id}|${p.name}]]` : p?.name ?? 'Someone');
+export const personRef = (p) =>
+    p?.id != null ? `[[person:${p.id}|${p.name}]]` : (p?.name ?? 'Someone');
 
 // A person saying something, in the feed: their name, and who they are.
-export const says = (p, text) => ({ kind: 'npc', who: p.name, person: p.id, text });
+export const says = (p, text) => ({
+    kind: 'npc',
+    who: p.name,
+    person: p.id,
+    text,
+});

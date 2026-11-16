@@ -9,13 +9,33 @@ import Mustache from 'mustache';
 Mustache.escape = (s) => s; // plain text; the client sets it with textContent
 
 const PRONOUNS = {
-  false: { They: 'It', they: 'it', Their: 'Its', their: 'its', them: 'it', theirs: 'its', theyAre: 'it is', s: 's', es: 'es' },
-  true: { They: 'They', they: 'they', Their: 'Their', their: 'their', them: 'them', theirs: 'theirs', theyAre: 'they are', s: '', es: '' }
+    false: {
+        They: 'It',
+        they: 'it',
+        Their: 'Its',
+        their: 'its',
+        them: 'it',
+        theirs: 'its',
+        theyAre: 'it is',
+        s: 's',
+        es: 'es',
+    },
+    true: {
+        They: 'They',
+        they: 'they',
+        Their: 'Their',
+        their: 'their',
+        them: 'them',
+        theirs: 'theirs',
+        theyAre: 'they are',
+        s: '',
+        es: '',
+    },
 };
 
 export const say = (template, context, plural = false) =>
-  Mustache.render(template, {
-    ...PRONOUNS[!!plural],
-    number: () => (text, render) => render(text).split('|')[plural ? 1 : 0],
-    ...context
-  });
+    Mustache.render(template, {
+        ...PRONOUNS[!!plural],
+        number: () => (text, render) => render(text).split('|')[plural ? 1 : 0],
+        ...context,
+    });
