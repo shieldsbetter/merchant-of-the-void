@@ -1,10 +1,11 @@
-import { plain } from './refs.js';
 import yardIcon from 'game-icon:auto-repair';
-import wantedIcon from 'game-icon:wanted-reward';
-import questIcon from 'game-icon:scroll-unfurled';
-import noFuelIcon from 'game-icon:jerrycan';
-import contactIcon from 'game-icon:shaking-hands';
 import dangerIcon from 'game-icon:hazard-sign';
+import noFuelIcon from 'game-icon:jerrycan';
+import questIcon from 'game-icon:scroll-unfurled';
+import contactIcon from 'game-icon:shaking-hands';
+import wantedIcon from 'game-icon:wanted-reward';
+
+import { plain } from './refs.js';
 
 // Badges: small icons for a system's attributes and what's going on there,
 // on the map and (larger) in its info card, where tapping one explains it.

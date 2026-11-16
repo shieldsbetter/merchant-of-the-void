@@ -1,19 +1,13 @@
 // A faction's job (taken at its office; see factions.js): deliver, survey or
 // bounty, worded by the faction's type. Doing it pays credits and
 // +10 reputation with the faction; missing a delivery's deadline costs 5.
-import {
-    GOODS,
-    PAY_PER_FUEL,
-    GRACE,
-    payFor,
-    parcel,
-    amountOf,
-} from '../goods.js';
+
 import { TYPES } from '../faction-types.js';
-import { loadCargo, dropCargo } from '../ship.js';
+import { PAY_PER_FUEL, GRACE, payFor, parcel, amountOf } from '../goods.js';
 import { cheapest } from '../graph.js';
-import { pick, near, hops } from './util.js';
 import { planetRef } from '../refs.js';
+import { loadCargo, dropCargo } from '../ship.js';
+import { pick, near, hops } from './util.js';
 
 const REP = 10; // for a job done
 const LATE = -5; // for a delivery missed

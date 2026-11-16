@@ -15,8 +15,8 @@
 // Anything new gets its own label (`derive`), never draws from a stream
 // something else uses.
 
-import { GOODS, CARGO, MODULES, fuelCost } from './goods.js';
 import { TYPES } from './faction-types.js';
+import { GOODS, CARGO, MODULES, fuelCost } from './goods.js';
 
 // A seed derived from `seed` and a path of labels (FNV-1a, then mixed).
 export function derive(seed, ...path) {

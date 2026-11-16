@@ -4,6 +4,7 @@
 //     "they" for a plural subject, "it" for a singular one
 //   {{s}} {{es}}  verb endings: "rise{{s}}" → "rises" / "rise"
 //   {{#number}}is|are{{/number}}  singular|plural
+
 import Mustache from 'mustache';
 
 Mustache.escape = (s) => s; // plain text; the client sets it with textContent

@@ -6,6 +6,7 @@
 // For now, pirates: 1 in 30 each cycle, from cycle 20, until you've
 // outgrown them: your ship (repaired) would beat them 75% of the time or
 // more, and you've beaten them twice (ship.pirateWins; see combat.js).
+
 import { pirateOdds } from './combat.js';
 import { planetRef } from './refs.js';
 

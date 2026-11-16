@@ -1,8 +1,8 @@
-import { mountHolds } from './holds.js';
 import { mountCrew } from './crew.js';
+import { mountHolds } from './holds.js';
 import { mountJournal } from './journal.js';
-import { mountShipTraits } from './ship-traits.js';
 import { mountMenu } from './menu.js';
+import { mountShipTraits } from './ship-traits.js';
 
 const TABS = {
     ship: ['Ship', mountShipTraits],

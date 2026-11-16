@@ -2,6 +2,7 @@
 // good up or down. The effect fades with hops from the centre, and each
 // situation ends on its own after a set number of cycles. Secret for now;
 // rumors will let the player learn about them.
+
 import { GOODS } from './goods.js';
 import { say } from './grammar.js';
 import { planetRef } from './refs.js';

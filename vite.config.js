@@ -1,7 +1,7 @@
-import { fileURLToPath } from 'node:url';
-import { createRequire } from 'node:module';
 import { readFileSync, readdirSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 
 // Icons from game-icons.net (CC BY 3.0; see CREDITS.md), via the Iconify

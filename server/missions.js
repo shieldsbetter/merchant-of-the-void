@@ -6,6 +6,8 @@
 // A mission has `shape`, `offer(world, contact)`, which makes one: { config,
 // pitch (text, filled with the config's vars: see contact-types.js) }, and
 // the plot's own steps and scenes. Its config always has `contact` (their id).
+
+import { render, advance } from './contact-types.js';
 import {
     GOODS,
     CARGO,
@@ -14,12 +16,11 @@ import {
     parcel,
     amountOf,
 } from './goods.js';
-import { loadCargo, dropCargo, holding, takeGoods, fits } from './ship.js';
 import { cheapest } from './graph.js';
-import { hops } from './plots/util.js';
 import { newPerson, personOf } from './people.js';
-import { render, advance } from './contact-types.js';
+import { hops } from './plots/util.js';
 import { planetRef, personRef } from './refs.js';
+import { loadCargo, dropCargo, holding, takeGoods, fits } from './ship.js';
 
 const pick = (a) => a[Math.floor(Math.random() * a.length)];
 const cr = (n) => `${n.toLocaleString()} cr`;

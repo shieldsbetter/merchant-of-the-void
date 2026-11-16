@@ -8,14 +8,15 @@
 // Their price is the highest fuel price anywhere in the universe. If there's
 // no fuel here they offer to sell at it; refuse (or if fuel is here but you
 // can't afford it) and they offer it as a loan, due in 50 cycles.
+
 import { GOODS } from './goods.js';
-import { priceOf } from './situations.js';
 import { stats } from './modules.js';
+import { newPerson, nameOf } from './people.js';
 import { PLAYER } from './player.js';
 import { addQuest, endQuest } from './quests.js';
-import { newPerson, nameOf } from './people.js';
-import { cantShowYourFace, hunted, hopCost } from './traits.js';
 import { planetRef, personRef } from './refs.js';
+import { priceOf } from './situations.js';
+import { cantShowYourFace, hunted, hopCost } from './traits.js';
 
 const LOAN_CYCLES = 50;
 

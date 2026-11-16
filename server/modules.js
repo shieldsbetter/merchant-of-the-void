@@ -2,9 +2,10 @@
 // Hull Expansion adds), each empty or holding a module good (see goods.js).
 // Installing takes the module from the hold and puts whatever it replaces
 // back there. Stats change at once. A unique module can only be installed once.
+
 import { GOODS } from './goods.js';
-import { effect } from './traits.js';
 import { fits, misfit } from './ship.js';
+import { effect } from './traits.js';
 
 export const SLOTS = 5;
 

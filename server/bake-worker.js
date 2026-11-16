@@ -1,9 +1,10 @@
 // The planet baker, on its own thread (see planets.js): it takes one planet's
 // options and a file at a time, bakes, and writes the gzipped compiled JSON
 // there (via a temporary file, so a half-written planet is never seen).
-import { parentPort } from 'node:worker_threads';
-import { createRequire } from 'node:module';
+
 import { renameSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { parentPort } from 'node:worker_threads';
 import { gzipSync } from 'node:zlib';
 
 const Planet = createRequire(import.meta.url)('@shieldsbetter/planet');

@@ -5,10 +5,11 @@
 // nearby knows the truth: they send you for the evidence, an easier fight
 // away, and showing it to the lord ends the vendetta, frees your crew member,
 // and the lord, embarrassed, owes them: a contact there.
+
 import { addContact } from '../crew.js';
+import { addMood } from '../morale.js';
 import { newPerson } from '../people.js';
 import { PLAYER } from '../player.js';
-import { addMood } from '../morale.js';
 import { pick, near, hops } from './util.js';
 
 const ZONE = 1; // hops from the lord's system their people watch
@@ -206,7 +207,6 @@ export const vendetta = {
         },
         // The evidence, under guard: an easier fight.
         evidence(p) {
-            const c = p.config;
             p.fight('evidence', {
                 foes: thugs(2).map((f) => ({ ...f, title: 'Guard' })),
                 start: 'Two guards stand between you and the lockbox.',

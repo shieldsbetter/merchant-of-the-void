@@ -7,6 +7,12 @@
 // that needs a tag goes only in a hold with it; a hold with tags takes only
 // goods that need one of them. (Cargo already in the wrong hold, from older
 // saves, can stay or move out, but nothing new goes in wrong.)
+//
+// Credits live on the ship too.
+
+import { GOODS } from './goods.js';
+import { stats } from './modules.js';
+
 export const fits = (hold, good) => {
     const need = GOODS[good]?.needs;
     return need ? hold.tags.includes(need) : !hold.tags.length;
@@ -17,11 +23,6 @@ export const misfit = (hold, good) => {
         ? `${name} need${plural ? '' : 's'} a ${needs} hold`
         : `the ${hold.name} only takes ${hold.tags.join('/')} cargo`;
 };
-// Credits live on the ship too.
-
-import { GOODS } from './goods.js';
-import { stats } from './modules.js';
-
 const empty = (n) => Array(n).fill(null);
 
 // A ship's name, until you give it another (see renameShip).

@@ -1,4 +1,6 @@
 import Planet from '@shieldsbetter/planet';
+import enemyIcon from 'game-icon:crosshair';
+
 import {
     getPlanet,
     getCompiledPlanet,
@@ -11,12 +13,11 @@ import {
     currentGame,
     isNews,
 } from './api.js';
+import { badges, badgeEl } from './badges.js';
+import { named } from './officers.js';
 import { rich } from './refs.js';
 import { toast } from './toast.js';
-import { named } from './officers.js';
-import { badges, badgeEl } from './badges.js';
 import { journey, pass, landed } from './travel.js';
-import enemyIcon from 'game-icon:crosshair';
 
 // The System tab: the system you're in, and its thread since you arrived
 // (feed + conversation stack, kept on the server; and the thread as drawn,

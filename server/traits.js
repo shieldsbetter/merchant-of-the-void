@@ -3,8 +3,9 @@
 // trait: { id, kind, label, value, subscriptions, hidden?, effects?, ...details }
 // Hidden traits do their work through subscriptions and aren't shown.
 // effects: multipliers on the ship ({ fuel, damage, crit }); see effect().
-import { PLAYER } from './player.js';
+
 import { GOODS } from './goods.js';
+import { PLAYER } from './player.js';
 import { planetRef, personRef } from './refs.js';
 
 // The product of every trait's (and installed module's) multiplier for `key`

@@ -23,11 +23,12 @@
 // voice), their type's own (say {{shop}}), their arc's (say {{rival}}: a
 // person; or {{branch}}: a system), and whatever a mission adds. An arc's
 // people carry over to the next one (the rival who comes back).
+
 import { TYPES as FACTION_TYPES } from './faction-types.js';
-import { newPerson, refOf } from './people.js';
-import { planetRef } from './refs.js';
 import { say } from './grammar.js';
+import { newPerson, refOf } from './people.js';
 import { hops } from './plots/util.js';
+import { planetRef } from './refs.js';
 
 const pick = (a) =>
     Array.isArray(a) ? a[Math.floor(Math.random() * a.length)] : a;

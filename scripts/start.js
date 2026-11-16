@@ -2,9 +2,11 @@
 // its public URL is printed alongside Vite's links, with a QR code for a phone.
 // `npm start -- --reset`: first delete every game (and the old single save),
 // for a fresh start.
-import { rmSync } from 'node:fs';
-import { spawn } from 'node:child_process';
+
 import QRCode from 'qrcode';
+
+import { spawn } from 'node:child_process';
+import { rmSync } from 'node:fs';
 
 if (process.argv.includes('--reset')) {
     rmSync(new URL('../saves', import.meta.url), {
@@ -41,7 +43,9 @@ async function tunnelUrl() {
                 t.public_url.startsWith('https://'),
             )?.public_url;
             if (url) return url;
-        } catch {}
+        } catch {
+            // ngrok isn't up yet: keep asking.
+        }
         await new Promise((r) => setTimeout(r, 500));
     }
     return null;

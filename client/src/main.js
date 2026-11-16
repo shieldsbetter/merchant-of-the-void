@@ -1,11 +1,12 @@
+import systemIcon from 'game-icon:ringed-planet';
+import statusIcon from 'game-icon:spaceship';
+import navIcon from 'game-icon:treasure-map';
+
+import { currentGame, getBake } from './api.js';
+import { mountGames } from './games.js';
 import { mountMap } from './map.js';
 import { mountSystem } from './planet-view.js';
 import { mountShip } from './ship.js';
-import { mountGames } from './games.js';
-import { currentGame, getBake } from './api.js';
-import navIcon from 'game-icon:treasure-map';
-import systemIcon from 'game-icon:ringed-planet';
-import statusIcon from 'game-icon:spaceship';
 
 // Hash routes, one per tab: '#/' Nav (the map; '#/route/:id' opens it on a
 // system), '#/system' the system you're in and its thread, '#/ship' Status
@@ -64,7 +65,9 @@ function generating() {
             }
             Object.assign(bar, { max: total, value: done });
             app.querySelector('p').textContent = `${done} of ${total} systems`;
-        } catch {}
+        } catch {
+            // The server's busy or restarting: ask again next time round.
+        }
         if (!gone) timer = setTimeout(poll, 1000);
     };
     poll();

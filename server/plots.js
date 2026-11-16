@@ -12,15 +12,16 @@
 // Scenes are the plot's conversations: lines, then options that run steps.
 // Plots also start from traits: the director (below) seeds one on a crew
 // member, and it starts its plot on the next dock.
+
 import { emit } from './events.js';
-import { addQuest } from './quests.js';
+import { MISSIONS } from './missions.js';
+import { newPerson, personOf, nameOf } from './people.js';
 import { PLAYER } from './player.js';
+import { factionJob } from './plots/faction-job.js';
 import { missingChild } from './plots/missing-child.js';
 import { vendetta } from './plots/vendetta.js';
-import { factionJob } from './plots/faction-job.js';
-import { MISSIONS } from './missions.js';
+import { addQuest } from './quests.js';
 import { planetRef, personRef, says } from './refs.js';
-import { newPerson, personOf, nameOf } from './people.js';
 
 // Every plot template. `tags` describe them: 'drama' (the director's to
 // start), 'tutorial' (a clear first thing to do, good for a game's first

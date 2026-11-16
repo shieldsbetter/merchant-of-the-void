@@ -1,9 +1,10 @@
 // A faction's office, on any of its worlds: one job offer per hop (and one
 // job at a time), or a donation for reputation. Reputation per faction lives
 // in world.reputation ({ faction index: number }).
+
 import { TYPES } from './faction-types.js';
-import { makeOffer } from './plots/faction-job.js';
 import { startPlot } from './plots.js';
+import { makeOffer } from './plots/faction-job.js';
 
 const DONATION = 500;
 const DONATION_REP = 5;

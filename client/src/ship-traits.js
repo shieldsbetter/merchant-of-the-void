@@ -1,3 +1,5 @@
+import pencilIcon from 'game-icon:pencil';
+
 import {
     getShip,
     getGoods,
@@ -7,7 +9,6 @@ import {
     setOfficer,
 } from './api.js';
 import { named } from './officers.js';
-import pencilIcon from 'game-icon:pencil';
 
 const NAME_MAX = 50; // as the server allows
 const POSTS = { navigator: 'Navigator' }; // the ship's officers' posts

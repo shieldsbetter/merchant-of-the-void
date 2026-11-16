@@ -4,9 +4,27 @@
 // universe (market and ship-yard stock). Loading lays those over a freshly
 // generated universe and fills in anything missing, so a save from older
 // code is read under the current rules without being repaired first.
-import { makeUniverse, restock } from './universe.js';
+
+import { hail } from './arrival.js';
+import { shipCombat } from './combat.js';
+import { becomes } from './contact-types.js';
+import { makeCrew, hop } from './crew.js';
+import { encounter, spaceVisit } from './encounters.js';
+import { emit, undefer, perform } from './events.js';
+import { crewFight } from './firefight.js';
 import { GOODS } from './goods.js';
+import { cheapest } from './graph.js';
+import { stats, SLOTS } from './modules.js';
+import { expire, restless, trauma } from './morale.js';
+import { newPerson } from './people.js';
+import { PLAYER } from './player.js';
+import { direct } from './plots.js';
+import { personRef } from './refs.js';
+import { hear, prune } from './rumors.js';
 import { makeShip, shipName } from './ship.js';
+import { tick, seed as seedSituations, priceOf, gist } from './situations.js';
+import { addShipTrait, newShip, hopCost, cantShowYourFace } from './traits.js';
+import { makeUniverse, restock } from './universe.js';
 import {
     startVisit,
     act,
@@ -15,23 +33,6 @@ import {
     interject,
     blocking,
 } from './visit.js';
-import { makeCrew, hop } from './crew.js';
-import { expire, restless, trauma } from './morale.js';
-import { newPerson } from './people.js';
-import { personRef } from './refs.js';
-import { becomes } from './contact-types.js';
-import { tick, seed as seedSituations, priceOf, gist } from './situations.js';
-import { hear, prune } from './rumors.js';
-import { emit, undefer, perform } from './events.js';
-import { PLAYER } from './player.js';
-import { addShipTrait, newShip, hopCost, cantShowYourFace } from './traits.js';
-import { shipCombat } from './combat.js';
-import { crewFight } from './firefight.js';
-import { stats, SLOTS } from './modules.js';
-import { direct } from './plots.js';
-import { cheapest } from './graph.js';
-import { hail } from './arrival.js';
-import { encounter, spaceVisit } from './encounters.js';
 
 // A brand new game on `seed`.
 export function newGame(id, seed, name) {

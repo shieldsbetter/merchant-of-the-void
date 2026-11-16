@@ -1,8 +1,8 @@
-import { crewFight } from './firefight.js';
-import { says, personRef, planetRef } from './refs.js';
 import { becomes, TYPES, regardOf } from './contact-types.js';
-import { newPerson } from './people.js';
+import { crewFight } from './firefight.js';
 import { addMood, moraleOf } from './morale.js';
+import { newPerson } from './people.js';
+import { says, personRef, planetRef } from './refs.js';
 // The crew. Traits are secret: only revealed ones leave the server.
 // Morale is out of 200: a base, plus moods while they last (see morale.js).
 

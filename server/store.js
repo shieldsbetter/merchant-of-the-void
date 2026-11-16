@@ -2,6 +2,9 @@
 // client keeps); it owns a list of games, and can only see and change its
 // own. Each game is a file, saves/games/<id>.json (see game.js for what's in
 // it); sessions.json maps session ids to their game ids.
+
+import { load, newGame, save } from './game.js';
+import { randomUUID } from 'node:crypto';
 import {
     existsSync,
     mkdirSync,
@@ -9,10 +12,8 @@ import {
     writeFileSync,
     rmSync,
 } from 'node:fs';
-import { randomUUID } from 'node:crypto';
-import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
-import { load, newGame, save } from './game.js';
+import { fileURLToPath } from 'node:url';
 
 const DIR =
     process.env.SAVES ?? fileURLToPath(new URL('../saves', import.meta.url)); // SAVES=dir for separate data (tests)

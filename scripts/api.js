@@ -3,6 +3,7 @@
 // file that's replaced rather than edited in place, as many editors and
 // tools save, stops being watched, and later edits to it go unnoticed.
 // Watching the directory sees every change.)
+
 import { spawn } from 'node:child_process';
 import { watch } from 'node:fs';
 import { fileURLToPath } from 'node:url';

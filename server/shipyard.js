@@ -1,9 +1,10 @@
 // Ship yards (a system trait; see universe.js): buy modules from the yard's
 // stock (node.yard), or sell any module from the hold for 60% of its base
 // price, after which the yard has it for sale.
+
 import { GOODS, MODULES } from './goods.js';
-import { loadCargo } from './ship.js';
 import { planetRef } from './refs.js';
+import { loadCargo } from './ship.js';
 
 const SELL = 0.6; // of a module's base price
 const RESELL = 1.1; // what the yard then asks for it

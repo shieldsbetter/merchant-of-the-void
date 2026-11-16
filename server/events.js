@@ -29,11 +29,12 @@
 //   /players/:playerId/shoreleave/:systemId   you took shore leave there
 //   /quests/:id/:outcome, /fights/:id/won|lost   a quest or fight finished
 // (Events are listed above; these last two lines are events too.)
-import { interject } from './visit.js';
-import { endQuest } from './quests.js';
-import { addShipTrait } from './traits.js';
-import { dropCargo } from './ship.js';
+
 import { runStep, startPlot } from './plots.js';
+import { endQuest } from './quests.js';
+import { dropCargo } from './ship.js';
+import { addShipTrait } from './traits.js';
+import { interject } from './visit.js';
 
 // The params captured by matching `path` against `pattern`, or null if it
 // doesn't match.

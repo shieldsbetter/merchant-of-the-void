@@ -14,7 +14,9 @@ const store = {
         try {
             if (v == null) localStorage.removeItem(k);
             else localStorage.setItem(k, v);
-        } catch {}
+        } catch {
+            // No storage (a private window, say): just don't remember.
+        }
     },
 };
 let session = store.get('session');

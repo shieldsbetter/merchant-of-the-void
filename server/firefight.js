@@ -26,11 +26,11 @@
 // morale breaks (they run, or give up). Crew left down on the losing side
 // carry Trauma afterwards.
 
-import { crewMorale } from './crew.js';
 import { seized, plundered, patchUp } from './aftermath.js';
-import { freeName, refOf, nameOf } from './people.js';
-import { lostFight, trauma } from './morale.js';
+import { crewMorale } from './crew.js';
 import { say } from './grammar.js';
+import { lostFight, trauma } from './morale.js';
+import { freeName, refOf, nameOf } from './people.js';
 import { personRef } from './refs.js';
 
 const MORALE = {

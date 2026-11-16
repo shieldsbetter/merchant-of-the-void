@@ -4,8 +4,9 @@
 // crew.js's ashore), at no less than shore leave's price per cycle. A
 // Limping new ship (75 hull down) is 1,200 cr and 4 cycles. Repaired in
 // full, the ship's no longer Limping.
-import { stats } from './modules.js';
+
 import { ashore } from './crew.js';
+import { stats } from './modules.js';
 import { PLAYER } from './player.js';
 
 export const RATES = {

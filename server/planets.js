@@ -5,12 +5,13 @@
 // PLANET_LIBRARY of them (see config.js); a game's systems each get a
 // different one, drawn at random (see assign). Games depend on these files:
 // they live outside saves/, and nothing deletes them.
-import { Worker } from 'node:worker_threads';
-import { existsSync, mkdirSync, readFileSync, readdirSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { join } from 'node:path';
+
 import { PLANET_LIBRARY } from './config.js';
 import { planetOptions } from './universe.js';
+import { existsSync, mkdirSync, readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { Worker } from 'node:worker_threads';
 
 const DIR =
     process.env.LIBRARY ??

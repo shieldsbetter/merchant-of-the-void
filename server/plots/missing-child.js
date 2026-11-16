@@ -3,11 +3,11 @@
 // crime lord who knows where the child went, and wants paying, serving or
 // beating. Then the child's captor wants a ransom. Bring them home and the
 // child stays on as the crew member's contact, and the crew member is Loyal.
+
 import { addContact } from '../crew.js';
+import { addMood } from '../morale.js';
 import { newPerson } from '../people.js';
 import { PLAYER } from '../player.js';
-import { addMood } from '../morale.js';
-
 import { pick, shuffle, near } from './util.js';
 
 export const missingChild = {

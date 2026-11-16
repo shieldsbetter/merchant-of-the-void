@@ -1,7 +1,8 @@
 // What's left to do after a fight, whatever kind it was.
-import { addShipTrait, limping } from './traits.js';
+
 import { stats } from './modules.js';
 import { refOf } from './people.js';
+import { addShipTrait, limping } from './traits.js';
 
 const FLOOR = 0.25; // hull you're patched back up to after a fight
 

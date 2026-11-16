@@ -3,6 +3,11 @@
 // any live puts "Local contacts..." on the menu. Each contact, once between
 // hops, can be asked for work (a courier quest) and, once between hops, about
 // rumors (they may say how long one will last).
+
+import { stage, regardOf } from './contact-types.js';
+import { addContact, contactsOf } from './crew.js';
+import { emit } from './events.js';
+import { offer, meetFixer, stranded } from './fixer.js';
 import {
     GOODS,
     PAY_PER_FUEL,
@@ -11,19 +16,15 @@ import {
     parcel,
     amountOf,
 } from './goods.js';
-import { PLAYER } from './player.js';
-import { emit } from './events.js';
-import { addContact, contactsOf } from './crew.js';
-import { stage, regardOf } from './contact-types.js';
-import { missionFor } from './missions.js';
-import { startPlot } from './plots.js';
-import { newPerson } from './people.js';
-import { addQuest, endQuest } from './quests.js';
-import { loadCargo, dropCargo } from './ship.js';
 import { cheapest } from './graph.js';
-import { offer, meetFixer, stranded } from './fixer.js';
-import { push } from './visit.js';
+import { missionFor } from './missions.js';
+import { newPerson } from './people.js';
+import { PLAYER } from './player.js';
+import { startPlot } from './plots.js';
+import { addQuest, endQuest } from './quests.js';
 import { planetRef, personRef, says } from './refs.js';
+import { loadCargo, dropCargo } from './ship.js';
+import { push } from './visit.js';
 
 const pick = (a) => a[Math.floor(Math.random() * a.length)];
 const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;

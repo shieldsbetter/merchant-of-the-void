@@ -10,14 +10,15 @@
 // don't change how damaged you are), except that after any fight it's
 // patched back up to a floor: 25% hull and one critical system, at the cost
 // of cycles.
-import { refOf } from './people.js';
-import { effect } from './traits.js';
+
 import { patchUp } from './aftermath.js';
 import { boarding } from './firefight.js';
 import { say } from './grammar.js';
 import { stats } from './modules.js';
 import { lostFight } from './morale.js';
+import { refOf } from './people.js';
 import { personRef } from './refs.js';
+import { effect } from './traits.js';
 
 const LOW = 0.15; // pause when a ship's hull first falls to this fraction
 const SIMS = 300; // fights simulated for the odds
